@@ -6,16 +6,16 @@ require "dotenv"
 module Checkme
   module Cli
     class Main < Base
-      def self.exit_on_failure?() true end
+      def self.exit_on_failure? = true
 
       desc "validate", "validate an email address"
       option :email, aliases: "-e", type: :string, required: true,
                      desc: "email address to validate"
-      # option :port, aliases: "-p", type: :string, default: "2525", desc: "Smtp port"
+      option :methods, aliases: "-m", type: :string, default: "all",
+                       desc: "Different methods to check, regex, mx, smtp, open_mail_domain"
       def validate
-        invoke "checkme:cli:email:validate", {aa: 1}
+        invoke "checkme:cli:email:validate"
       end
-
 
       desc "server", "Run a smtp server"
       option :hosts, aliases: "-h", type: :string, default: "*",

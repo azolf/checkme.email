@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'securerandom'
+require "securerandom"
 
 module Checkme
   module Email
@@ -17,7 +17,8 @@ module Checkme
 
           if truemail_result.result.success
             truemail_result.result.success = false
-            truemail_result.result.errors[:open_mail_domain] = "This domain accept any email addresses. It just accepted #{random_mail}"
+            truemail_result.result.errors[:open_mail_domain] =
+              "This domain accept any email addresses. It just accepted #{random_mail}"
           end
 
           truemail_result
