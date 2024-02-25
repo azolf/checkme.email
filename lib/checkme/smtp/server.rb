@@ -5,19 +5,20 @@ require "midi-smtp-server"
 module Checkme
   module Smtp
     class Server < MidiSmtpServer::Smtpd
+      attr_accessor :validation_methods
+
+      def initialize(**args)
+        self.validation_methods = args[:validation_methods]
+        args.delete(:validation_methods)
+        super
+      end
+
       def on_message_data_event(ctx)
         mail = Mail.read_from_string(ctx[:message][:data])
-          # delivery_method :smtp, {
-          #   address: SmtpUser.first.smtp_setting.host,
-          #   port: SmtpUser.first.smtp_setting.port,
-          #   password: SmtpUser.first.smtp_setting.password,
-          #   user_name: SmtpUser.first.smtp_setting.user,
-          #   authentication: 'plain',
-          #   domain: SmtpUser.first.smtp_setting.domain,
-          #   enable_starttls_auto: true
-          # }
-        # end
-        mail.deliver!
+        mail = remove_unavailable_mail_boxses(mail)
+
+        puts 'DELIVER !!!!!!!!!'
+        # mail.deliver!
       end
 
       # check the authentication
@@ -30,6 +31,20 @@ module Checkme
         end
 
         raise MidiSmtpServer::Smtpd535Exception
+      end
+
+      private
+      def remove_unavailable_mail_boxses(mail)
+        addresses =  mail.to
+        addresses.each do |address|
+          validate = Checkme::Email::Validator.process(address, self.validation_methods)
+          addresses.delete(address) unless validate[:success]
+        end
+        raise MidiSmtpServer::Smtpd450Exception if addresses.empty?
+
+        mail.to = addresses
+
+        mail
       end
     end
   end

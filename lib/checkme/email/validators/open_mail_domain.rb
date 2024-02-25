@@ -19,6 +19,9 @@ module Checkme
             truemail_result.result.success = false
             truemail_result.result.errors[:open_mail_domain] =
               "This domain accept any email addresses. It just accepted #{random_mail}"
+          else
+            truemail_result.result.success = true
+            truemail_result.result.errors[:open_mail_domain] = []
           end
 
           truemail_result

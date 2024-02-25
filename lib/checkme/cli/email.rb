@@ -15,11 +15,7 @@ module Checkme
           say "Validating email: #{email}", :magenta
 
           methods = options[:methods]
-          methods = if methods == "all"
-                      Checkme::Email::Validator::METHODS.keys
-                    else
-                      methods.split(",").map(&:to_sym)
-                    end
+          methods = methods.split(",").map(&:to_sym)
 
           say Checkme::Email::Validator.process(email, methods)
         end

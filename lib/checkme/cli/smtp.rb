@@ -10,8 +10,9 @@ module Checkme
       def server
         say "Running the SMTP server on #{options[:hosts]}", :magenta
         return unless valid_mode?(auth_mode)
+        methods = options[:methods].split(",").map(&:to_sym)
 
-        server = ::Checkme::Smtp::Server.new(hosts: options[:hosts], auth_mode: auth_mode, ports: options[:port])
+        server = ::Checkme::Smtp::Server.new(hosts: options[:hosts], auth_mode: auth_mode, ports: options[:port], validation_methods: methods)
 
         # save flag for Ctrl-C pressed
         flag_status_ctrl_c_pressed = false
