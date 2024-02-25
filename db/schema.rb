@@ -15,6 +15,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_25_123017) do
     t.string "email", null: false
     t.boolean "is_valid"
     t.json "validation_result"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["email"], name: "index_emails_on_email", unique: true
   end
 

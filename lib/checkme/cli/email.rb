@@ -17,7 +17,7 @@ module Checkme
           methods = options[:methods]
           methods = methods.split(",").map(&:to_sym)
 
-          say Checkme::Email::Validator.process(email, methods)
+          say Checkme::Email::Validator.process(email, methods, options[:skip_cache]).attributes
         end
       end
     end

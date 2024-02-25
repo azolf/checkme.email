@@ -4,6 +4,8 @@ class CreateEmails < ActiveRecord::Migration[7.1]
       t.string :email, null: false
       t.boolean :is_valid
       t.json :validation_result
+
+      t.timestamps
     end
 
     add_index :emails, :email, :unique => true

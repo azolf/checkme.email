@@ -11,6 +11,7 @@ module Checkme
                      desc: "email address to validate"
       option :methods, aliases: "-m", type: :string, default: "regex,mx,smtp,open_mail_domain",
                        desc: "Different methods to check, regex, mx, smtp, open_mail_domain"
+      option :skip_cache, type: :boolean, default: false, desc: 'Skip the database cache'
       def validate
         invoke "checkme:cli:email:validate", [], options
       end
