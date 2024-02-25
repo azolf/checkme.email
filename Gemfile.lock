@@ -2,8 +2,12 @@ PATH
   remote: .
   specs:
     checkme (0.1.0)
+      activerecord
       dotenv
+      mail
       midi-smtp-server
+      pg
+      standalone_migrations
       thor
       truemail
       zeitwerk
