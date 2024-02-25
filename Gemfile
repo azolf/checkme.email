@@ -19,6 +19,7 @@ gem "zeitwerk"
 gem 'mail'
 gem 'standalone_migrations'
 gem 'pg'
+gem 'activerecord'
 
 group :development, :test do
   gem 'sqlite3'

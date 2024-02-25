@@ -11,3 +11,4 @@
 .rspec_status
 
 db/*.sqlite3
+db/*.sqlite3*

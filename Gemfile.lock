@@ -191,6 +191,7 @@ PLATFORMS
   arm64-darwin-23
 
 DEPENDENCIES
+  activerecord
   checkme!
   dotenv
   mail
