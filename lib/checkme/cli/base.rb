@@ -1,16 +1,20 @@
 # frozen_string_literal: true
 
-require "thor"
-require "dotenv"
+require 'thor'
+require 'dotenv'
+require 'mail'
 
 module Checkme
   module Cli
     class Base < Thor
+      def self.exit_on_failure? = true
+
       def initialize(*)
         super
         @original_env = ENV.to_h.dup
         Dotenv.load
         truemail_setup
+        mail_setup
       end
 
       private
@@ -24,8 +28,31 @@ module Checkme
         puts "  Finished all in #{format("%.1f seconds", runtime)}"
       end
 
+      def mail_setup
+      #   puts {
+      #     address: ENV['SMTP_HOST'],
+      #     port: ENV['SMTP_PORT'],
+      #     password: ENV['SMTP_PASSWORD'],
+      #     user_name: ENV['SMTP_USER'],
+      #     authentication: 'plain',
+      #     domain: ENV['SMTP_DOMAIN'],
+      #     enable_starttls_auto: ENV['SMTP_ENABLE_TLS'] == 'true'
+      # }.inspect
+
+        ::Mail.defaults do
+          delivery_method :smtp, {
+              address: ENV['SERVER_SMTP_HOST'],
+              port: ENV['SERVER_SMTP_PORT'],
+              password: ENV['SERVER_SMTP_PASSWORD'],
+              user_name: ENV['SERVER_SMTP_USER'],
+              authentication: 'plain',
+              domain: ENV['SERVER_SMTP_DOMAIN'],
+              enable_starttls_auto: ENV['SERVER_SMTP_ENABLE_TLS'] == 'true'
+            }
+        end
+      end
+
       def truemail_setup
-        require 'truemail'
         Truemail.configure do |config|
           # Required parameter. Must be an existing email on behalf of which verification will be performed
           config.verifier_email = ENV['VERIFIER_EMAIL']

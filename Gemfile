@@ -16,3 +16,4 @@ gem "midi-smtp-server"
 gem "thor"
 gem "trumail"
 gem "zeitwerk"
+gem 'mail'

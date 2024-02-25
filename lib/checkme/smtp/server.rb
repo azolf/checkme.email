@@ -23,9 +23,9 @@ module Checkme
       # check the authentication
       # if any value returned, that will be used for ongoing processing
       # otherwise the original value will be used for authorization_id
-      def on_auth_event(_ctx, authorization_id, authentication_id, _authentication)
-        #      authentication_id == 'administrator' && authentication == 'password'
-        if true && authorization_id == "" # && SmtpUser.authenticated?(authentication_id, authentication)
+      def on_auth_event(_ctx, authorization_id, authentication_id, authentication)
+        if authorization_id == "" && ENV['AUTH_USERNAME'] == authentication_id && ENV['AUTH_PASSWORD'] == authentication
+
           return authentication_id
         end
 

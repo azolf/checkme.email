@@ -7,10 +7,6 @@ module Checkme
   module Cli
     class Email < Base
       desc "validate", "validate an email address"
-      option :email, aliases: "-e", type: :string, required: true,
-                     desc: "email address to validate"
-      option :methods, aliases: "-m", type: :string, default: "all",
-                       desc: "Different methods to check, regex, mx, smtp, open_mail_domain"
       def validate
         print_runtime do
           say "Setting up validator", :magenta
