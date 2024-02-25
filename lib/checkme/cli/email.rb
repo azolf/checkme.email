@@ -14,7 +14,6 @@ module Checkme
       def validate
         print_runtime do
           say "Setting up validator", :magenta
-          setup_truemail({})
 
           email = options[:email]
           say "Validating email: #{email}", :magenta
@@ -27,15 +26,6 @@ module Checkme
                     end
 
           say Checkme::Email::Validator.process(email, methods)
-        end
-      end
-
-      private
-
-      def setup_truemail(_params)
-        Truemail.configure do |config|
-          # Required parameter. Must be an existing email on behalf of which verification will be performed
-          config.verifier_email = "verifier@example.com"
         end
       end
     end

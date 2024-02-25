@@ -7,26 +7,15 @@ module Checkme
     class Server < MidiSmtpServer::Smtpd
       def on_message_data_event(ctx)
         mail = Mail.read_from_string(ctx[:message][:data])
-        # Mail.defaults do
-        #   Rails.logger.error(
-        #     address: SmtpUser.first.smtp_setting.host,
-        #     port: SmtpUser.first.smtp_setting.port,
-        #     password: SmtpUser.first.smtp_setting.password,
-        #     user_name: SmtpUser.first.smtp_setting.user,
-        #     authentication: 'plain',
-        #     domain: SmtpUser.first.smtp_setting.domain,
-        #     enable_starttls_auto: true
-        #   )
-
-        #   delivery_method :smtp, {
-        #     address: SmtpUser.first.smtp_setting.host,
-        #     port: SmtpUser.first.smtp_setting.port,
-        #     password: SmtpUser.first.smtp_setting.password,
-        #     user_name: SmtpUser.first.smtp_setting.user,
-        #     authentication: 'plain',
-        #     domain: SmtpUser.first.smtp_setting.domain,
-        #     enable_starttls_auto: true
-        #   }
+          # delivery_method :smtp, {
+          #   address: SmtpUser.first.smtp_setting.host,
+          #   port: SmtpUser.first.smtp_setting.port,
+          #   password: SmtpUser.first.smtp_setting.password,
+          #   user_name: SmtpUser.first.smtp_setting.user,
+          #   authentication: 'plain',
+          #   domain: SmtpUser.first.smtp_setting.domain,
+          #   enable_starttls_auto: true
+          # }
         # end
         mail.deliver!
       end
