@@ -6,4 +6,4 @@ COPY . /app/
 
 RUN bundle install
 
-CMD [ "/app/bin/checkme server" ]
+CMD ["/app/bin/checkme",  "server"]

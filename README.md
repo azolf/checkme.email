@@ -6,23 +6,53 @@ Here there is a SMTP server which also validate all the email addresses before s
 ## Installation
 
 ### Stateless
+With stateless version it doesn't cache the records in the database and everytime check all the validations.
+You just need to pass env `STATELESS=true` when running the checkme.email.
+
+```
+docker run --env VERIFIER_EMAIL=test@example.com \
+--env APP_ENV=production \
+--env STATELESS=true \
+--env AUTH_USERNAME=USERNAME \
+--env AUTH_PASSWORD=PASSWORD \
+--publish 2525:2525 \
+azolf/checkme:latest \
+/app/bin/checkme server
+```
 
 ### Statefull
+If you want to cache the email addresses in a database you should use this.
+
+You could easily run it with docker-compose.
+
+1. Download the docker-compose file
+```
+    wget https://raw.githubusercontent.com/azolf/checkme.email/main/docker-compose.yml
+```
+
+2. Run the setup
+```
+docker compose run --rm checkme /app/bin/setup
+```
+
+3. Fire up the containers
+```
+docker compose up -d
+```
+
+
 
 ## Usage
-You could easily run it with docker.
 
-docker run --env VERIFIER_EMAIL=test@example.com --env APP_ENV=production --env STATELESS=true azolf/checkme:0.0.0 /app/bin/checkme validate -e amirhosein.zlf@gmail.com 
+```
+docker run --env VERIFIER_EMAIL=test@example.com --env APP_ENV=production --env STATELESS=true azolf/checkme:latest /app/bin/checkme validate -e amirhosein.zlf@gmail.com 
+```
 
 ## Development
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/checkme.
+Bug reports and pull requests are welcome on GitHub at https://github.com/azolf/checkme.email
 
 ## License
 
