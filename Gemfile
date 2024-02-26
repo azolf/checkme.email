@@ -20,6 +20,7 @@ gem 'mail'
 gem 'standalone_migrations'
 gem 'pg'
 gem 'activerecord'
+gem 'erb'
 
 group :development, :test do
   gem 'sqlite3'

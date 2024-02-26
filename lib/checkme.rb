@@ -5,6 +5,9 @@ require_relative "checkme/version"
 require "zeitwerk"
 
 require 'dotenv'
+require 'erb'
+require 'yaml'
+
 Dotenv.load
 
 module Checkme
@@ -16,6 +19,10 @@ module Checkme
 
   def self.statefull?
     !stateless?
+  end
+
+  def self.db_config
+    YAML.safe_load(ERB.new(File.read('db/config.yml')).result, aliases: true)[ENV['APP_ENV']]
   end
 end
 
