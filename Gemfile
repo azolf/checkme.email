@@ -14,7 +14,7 @@ gem "rubocop", "~> 1.21"
 gem "dotenv"
 gem "midi-smtp-server"
 gem "thor"
-gem "trumail"
+gem "truemail"
 gem "zeitwerk"
 gem 'mail'
 gem 'standalone_migrations'

@@ -1,24 +1,18 @@
 # Checkme
 
-TODO: Delete this and the text below, and describe your gem
-
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/checkme`. To experiment with that code, run `bin/console` for an interactive prompt.
+Have you ever have a problem with bounce rates?
+Here there is a SMTP server which also validate all the email addresses before sending the out.
 
 ## Installation
 
-TODO: Replace `UPDATE_WITH_YOUR_GEM_NAME_PRIOR_TO_RELEASE_TO_RUBYGEMS_ORG` with your gem name right after releasing it to RubyGems.org. Please do not do it earlier due to security reasons. Alternatively, replace this section with instructions to install your gem from git if you don't plan to release to RubyGems.org.
+### Stateless
 
-Install the gem and add to the application's Gemfile by executing:
-
-    $ bundle add UPDATE_WITH_YOUR_GEM_NAME_PRIOR_TO_RELEASE_TO_RUBYGEMS_ORG
-
-If bundler is not being used to manage dependencies, install the gem by executing:
-
-    $ gem install UPDATE_WITH_YOUR_GEM_NAME_PRIOR_TO_RELEASE_TO_RUBYGEMS_ORG
+### Statefull
 
 ## Usage
+You could easily run it with docker.
 
-TODO: Write usage instructions here
+docker run --env VERIFIER_EMAIL=test@example.com --env APP_ENV=production --env STATELESS=true azolf/checkme:0.0.0 /app/bin/checkme validate -e amirhosein.zlf@gmail.com 
 
 ## Development
 
