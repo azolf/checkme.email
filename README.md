@@ -27,7 +27,7 @@ You could easily run it with docker-compose.
 
 1. Download the docker-compose file
 ```
-    wget https://raw.githubusercontent.com/azolf/checkme.email/main//examples/docker-compose.yml
+    wget https://raw.githubusercontent.com/azolf/checkme.email/main/examples/docker-compose.yml
 ```
 
 2. Run the setup
