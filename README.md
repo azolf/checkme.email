@@ -8,11 +8,11 @@ This image show how the SMTP server works.
 
 
 ## Features
-Email Address Validation: checkme integrates seamlessly with the trueMail library, allowing for robust email address validation to ensure the accuracy of recipient addresses.
+- Email Address Validation: checkme integrates seamlessly with the trueMail library, allowing for robust email address validation to ensure the accuracy of recipient addresses.
 
-Customizable Validations: Tailor the validation process to your specific requirements by customizing the types of validations performed on email addresses.
+- Customizable Validations: Tailor the validation process to your specific requirements by customizing the types of validations performed on email addresses.
 
-Stateful Mode: Enhance performance and reduce redundancy with the option to run checkme in a stateful mode. This mode caches all validations in a PostgreSQL database, preventing multiple checks for regularly used email addresses.
+- Stateful Mode: Enhance performance and reduce redundancy with the option to run checkme in a stateful mode. This mode caches all validations in a PostgreSQL database, preventing multiple checks for regularly used email addresses.
 
 
 
