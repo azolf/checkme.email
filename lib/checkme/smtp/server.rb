@@ -17,8 +17,7 @@ module Checkme
         mail = Mail.read_from_string(ctx[:message][:data])
         mail = remove_unavailable_mail_boxses(mail)
 
-        puts 'DELIVER !!!!!!!!!'
-        # mail.deliver!
+        mail.deliver!
       end
 
       # check the authentication
@@ -38,7 +37,7 @@ module Checkme
         addresses =  mail.to
         addresses.each do |address|
           validate = Checkme::Email::Validator.process(address, self.validation_methods)
-          addresses.delete(address) unless validate[:success]
+          addresses.delete(address) unless validate[:is_valid]
         end
         raise MidiSmtpServer::Smtpd450Exception if addresses.empty?
 
