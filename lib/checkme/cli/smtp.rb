@@ -11,8 +11,7 @@ module Checkme
         say "Running the SMTP server on #{options[:hosts]}", :magenta
         return unless valid_mode?(auth_mode)
         methods = options[:methods].split(",").map(&:to_sym)
-
-        server = ::Checkme::Smtp::Server.new(hosts: options[:hosts], auth_mode: auth_mode, ports: options[:port], validation_methods: methods)
+        server = ::Checkme::Smtp::Server.new(**configurations)
 
         # save flag for Ctrl-C pressed
         flag_status_ctrl_c_pressed = false
@@ -62,6 +61,19 @@ module Checkme
           when 'optional'
             :AUTH_OPTIONAL
           end
+        end
+
+        def configurations
+          conf = {
+            hosts: options[:hosts],
+            auth_mode: auth_mode,
+            ports: options[:port],
+            validation_methods: methods,
+            max_processings: options[:processings].to_i,
+          }
+          conf[:max_connections] = options[:connections].to_i if options[:connections].to_i > options[:processings].to_i
+
+          conf
         end
 
         def valid_mode?(auth_mode)
