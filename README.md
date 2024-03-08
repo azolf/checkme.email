@@ -16,7 +16,7 @@ docker run --env VERIFIER_EMAIL=test@example.com \
 --env AUTH_USERNAME=USERNAME \
 --env AUTH_PASSWORD=PASSWORD \
 --publish 2525:2525 \
-azolf/checkme:latest \
+ghcr.io/azolf/checkme:latest \
 /app/bin/checkme server
 ```
 
@@ -42,10 +42,10 @@ docker compose up -d
 
 
 
-## Usage
+## Simple Usage To Check email
 
 ```
-docker run --env VERIFIER_EMAIL=test@example.com --env APP_ENV=production --env STATELESS=true azolf/checkme:latest /app/bin/checkme validate -e amirhosein.zlf@gmail.com 
+docker run --env VERIFIER_EMAIL=test@example.com --env APP_ENV=production --env STATELESS=true ghcr.io/azolf/checkme:latest /app/bin/checkme validate -e amirhosein.zlf@gmail.com 
 ```
 
 
