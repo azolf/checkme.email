@@ -1,7 +1,7 @@
 version: '3'
 services:
   checkme:
-    image: azolf/checkme:latest
+    image: ghcr.io/azolf/checkme:latest
     ports:
       - 2525:2525
     environment:
