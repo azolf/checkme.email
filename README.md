@@ -50,7 +50,7 @@ docker run --env VERIFIER_EMAIL=test@example.com --env APP_ENV=production --env 
 
 
 ## Utilization
-Since we are using (MidiSmtpServer)[https://midi-smtp-server.readthedocs.io] to manage SMTP connection you could read the whole utilization details under (Load Balancing feature)[https://midi-smtp-server.readthedocs.io/feature_load_balancing/].
+Since we are using [MidiSmtpServer](https://midi-smtp-server.readthedocs.io) to manage SMTP connection you could read the whole utilization details under [Load Balancing feature](https://midi-smtp-server.readthedocs.io/feature_load_balancing/).
 
 
 # Environment Variables
