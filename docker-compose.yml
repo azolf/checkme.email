@@ -1,34 +1,20 @@
 version: '3'
 services:
   checkme:
-    image: azolf/checkme:latest
+    build: .
+    volumes:
+      - ./:/app/
     ports:
       - 2525:2525
-    environment:
-      - VERIFIER_EMAIL=please@checkme.email
-      - AUTH_USERNAME=AUTH_USERNAME
-      - AUTH_PASSWORD=AUTH_PASSWORD
-      - SERVER_SMTP_HOST=SMTP_HOST
-      - SERVER_SMTP_PORT=PORT
-      - SERVER_SMTP_DOMAIN=YOUR_DOMAIN
-      - SERVER_SMTP_USER=USERNAME
-      - SERVER_SMTP_PASSWORD=PASSWORD
-      - SERVER_SMTP_ENABLE_TLS=true
-      - APP_ENV=production
-      - STATELESS=false
-      - DB_NAME=checkme
-      - DB_POOL=30
-      - DB_USER=checkme
-      - DB_PASSWORD=YOUR_DB_PASSWORD
+    env_file:
+      - .env
     depends_on:
       - postgres
     command: /app/bin/checkme server --hosts=0.0.0.0
   postgres:
     image: postgres
-    environment:
-      - POSTGRES_PASSWORD=YOUR_DB_PASSWORD
-      - POSTGRES_USER=checkme
-      - POSTGRES_DB=checkme
+    env_file:
+      - .env
     volumes:
       - pgdata:/var/lib/postgresql/data
 
